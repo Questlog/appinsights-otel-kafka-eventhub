@@ -19,7 +19,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
 
-        <applicationinsights-agent.version>3.3.0-BETA-SNAPSHOT</applicationinsights-agent.version>
+        <applicationinsights-agent.version>3.2.11</applicationinsights-agent.version>
         <opentelemetry-api.version>1.13.0</opentelemetry-api.version>
         <kafka-clients.version>3.1.0</kafka-clients.version>
         <applicationinsights-spring-boot-starter.version>2.6.4</applicationinsights-spring-boot-starter.version>

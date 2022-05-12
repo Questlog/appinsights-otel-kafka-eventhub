@@ -70,6 +70,12 @@ public class KafkaConsumerConfiguration {
               log.info("Key: {}, Value: {}", header.key(), new String(header.value()));
             }
 
+            // without workaround
+            /*
+            exampleEventConsumer.accept(cr.value());
+            */
+
+            // with workaround
             Context context = getTraceParent(cr);
             try (Scope scope = context.makeCurrent()) {
               exampleEventConsumer.accept(cr.value());
@@ -87,7 +93,9 @@ public class KafkaConsumerConfiguration {
     }
   }
 
-
+  /**
+   * Get trace context from consumer record
+   */
   private Context getTraceParent(ConsumerRecord<Long, String> consumerRecord) {
     var textMapGetter = new TextMapGetter<ConsumerRecord<Long, String>>() {
       @Override
