@@ -71,15 +71,15 @@ public class KafkaConsumerConfiguration {
             }
 
             // without workaround
-            /*
             exampleEventConsumer.accept(cr.value());
-            */
 
             // with workaround
+            /* uncomment this and remove the other to use the workaround
             Context context = getTraceParent(cr);
             try (Scope scope = context.makeCurrent()) {
               exampleEventConsumer.accept(cr.value());
             }
+            */
           }
           kafkaConsumer.commitAsync();
         } catch (Exception e) {
