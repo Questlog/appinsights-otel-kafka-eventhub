@@ -1,0 +1,8 @@
+kafka:
+  clientId: producerClient
+  topic: ${EVENTHUB_NAME}
+  groupId: "$Default"
+  bootstrapServers: ${EVENTHUB_NAMESPACE_NAME}.servicebus.windows.net:9093
+  securityProtocol: SASL_SSL
+  saslMechanism: PLAIN
+  saslJaasConfig: org.apache.kafka.common.security.plain.PlainLoginModule required username="$ConnectionString" password="${EVENTHUB_CONNECTION_STRING}";

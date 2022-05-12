@@ -1,0 +1,23 @@
+{
+  "instrumentation": {
+    "logging": {
+      "level": "DEBUG"
+    }
+  },
+  "preview": {
+    "sampling": {
+      "overrides": [
+        {
+          "attributes": [
+            {
+              "key": "http.url",
+              "value": "http?://[^/]+/actuator/health",
+              "matchType": "regexp"
+            }
+          ],
+          "percentage": 0
+        }
+      ]
+    }
+  }
+}

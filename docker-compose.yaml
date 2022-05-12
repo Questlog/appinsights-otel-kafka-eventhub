@@ -1,0 +1,23 @@
+version: '3'
+
+# run "mvn clean install" first to generate the images
+
+services:
+  rest-service:
+    image: service/rest-service:1.0.0-SNAPSHOT
+    container_name: rest-service
+    ports:
+      - "8080:8080"
+    environment:
+      - APPLICATIONINSIGHTS_CONNECTION_STRING=${APPLICATIONINSIGHTS_CONNECTION_STRING:?APPLICATIONINSIGHTS_CONNECTION_STRING env variable not set}
+      - EVENTHUB_NAMESPACE_NAME=${EVENTHUB_NAMESPACE_NAME:?EVENTHUB_NAMESPACE_NAME env variable key not set}
+      - EVENTHUB_NAME=${EVENTHUB_NAME:?EVENTHUB_NAMESPACE_NAME env variable key not set}
+      - EVENTHUB_CONNECTION_STRING=${EVENTHUB_PRODUCER_CONNECTION_STRING:?EVENTHUB_PRODUCER_CONNECTION_STRING env variable key not set}
+  consumer-service:
+    image: service/consumer-service:1.0.0-SNAPSHOT
+    container_name: consumer-service
+    environment:
+      - APPLICATIONINSIGHTS_CONNECTION_STRING=${APPLICATIONINSIGHTS_CONNECTION_STRING:?APPLICATIONINSIGHTS_CONNECTION_STRING env variable not set}
+      - EVENTHUB_NAMESPACE_NAME=${EVENTHUB_NAMESPACE_NAME:?EVENTHUB_NAMESPACE_NAME env variable not set}
+      - EVENTHUB_NAME=${EVENTHUB_NAME:?EVENTHUB_NAMESPACE_NAME env variable key not set}
+      - EVENTHUB_CONNECTION_STRING=${EVENTHUB_CONSUMER_CONNECTION_STRING:?EVENTHUB_CONSUMER_CONNECTION_STRING env variable not set}
